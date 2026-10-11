@@ -1,0 +1,14 @@
+{
+  "name": "claude-mods",
+  "owner": {
+    "name": "Darsh Kejriwal"
+  },
+  "plugins": [
+    {
+      "name": "pulse",
+      "source": "./pulse",
+      "description": "A slim live banner above the prompt: context and usage-limit donuts with reset times, token mix and compaction alerts."
+    }
+  ],
+  "description": "Small mods for Claude Code: changes to its own interface, built with function hooks."
+}
