@@ -1,0 +1,6 @@
+{
+  "name": "pulse",
+  "version": "0.1.0",
+  "description": "A slim live banner above the prompt: context-window donut, token mix, cache hit rate, burn forecast, rate limits and cost.",
+  "types": "./types/index.d.ts"
+}
