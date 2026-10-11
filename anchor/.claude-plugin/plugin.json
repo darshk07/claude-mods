@@ -1,0 +1,8 @@
+{
+  "name": "anchor",
+  "version": "0.1.0",
+  "description": "Anchor: pin facts, decisions and rules that are re-sent every turn, so /compact can never lose them. Per-project pinboard with a panel.",
+  "author": { "name": "Darsh Kejriwal" },
+  "license": "MIT",
+  "types": "./types/index.d.ts"
+}

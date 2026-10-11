@@ -13,37 +13,35 @@ const at = (tokens: number): SessionMeasureInput => ({
 })
 
 describe('pulse banner', () => {
-  test('draws the context fill, a donut per usage limit and a compact button past 75%', async ($, on) => {
+  test('shows context and each usage limit, and a compact button past 75%', async ($, on) => {
     on('session.measure', ($, e) => ({ changed: e.changed }))
     on('ui.toast', () => ({ value: undefined }))
     mock.store(on)
-    await $.session.measure(at(120_000))
     await $.session.measure(at(160_000))
     for (const surface of ['terminal', 'desktop'] as const) {
       const ui = await $.ui.mount({ plugin: 'pulse', surface, ...BAND })
-      expect(await ui.find({ type: 'Text', text: /PULSE/ })).toBeDefined()
+      expect(await ui.find({ type: 'Text', text: /Context/ })).toBeDefined()
+      expect(await ui.find({ type: 'Text', text: /160k of 200k/ })).toBeDefined()
+      expect(await ui.find({ type: 'Text', text: /5-hour/ })).toBeDefined()
       expect(await ui.find({ type: 'Text', text: /\$/ })).toBeUndefined()
-      expect(await ui.find({ key: 'limit-five_hour' }) !== undefined || surface === 'terminal').toBe(true)
-      expect(await ui.find({ type: 'Text', text: /\+40\.0k/ })).toBeDefined()
       expect(await ui.find({ key: 'compact' })).toBeDefined()
       await ui.unmount()
     }
   })
 
-  test('the mode button collapses to mini and back', async ($, on) => {
+  test('the mode button switches to mini (no detail lines) and back', async ($, on) => {
     on('session.measure', ($, e) => ({ changed: e.changed }))
     on('ui.toast', () => ({ value: undefined }))
     mock.store(on)
-    await $.session.measure(at(20_000))
     await $.session.measure(at(30_000))
     for (const surface of ['terminal', 'desktop'] as const) {
       const ui = await $.ui.mount({ plugin: 'pulse', surface, ...BAND })
-      expect(await ui.find({ type: 'Text', text: /\+10\.0k/ })).toBeDefined()
+      expect(await ui.find({ type: 'Text', text: /30\.0k of 200k/ })).toBeDefined()
       expect(await ui.find({ key: 'compact' })).toBeUndefined()
       await ui.press({ key: 'mode' })
-      expect(await ui.find({ type: 'Text', text: /\+10\.0k/ })).toBeUndefined()
+      expect(await ui.find({ type: 'Text', text: /30\.0k of 200k/ })).toBeUndefined()
       await ui.press({ key: 'mode' })
-      expect(await ui.find({ type: 'Text', text: /\+10\.0k/ })).toBeDefined()
+      expect(await ui.find({ type: 'Text', text: /30\.0k of 200k/ })).toBeDefined()
       await ui.unmount()
     }
   })

@@ -1,0 +1,8 @@
+{
+  "name": "diet",
+  "version": "0.1.0",
+  "description": "Context Diet: trims huge tool outputs (build logs, long test runs, big fetches) before they reach the context, keeps the full text on disk, and shows how many tokens it saved.",
+  "author": { "name": "Darsh Kejriwal" },
+  "license": "MIT",
+  "types": "./types/index.d.ts"
+}

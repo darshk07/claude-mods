@@ -8,6 +8,16 @@
       "name": "pulse",
       "source": "./pulse",
       "description": "A slim live banner above the prompt: context and usage-limit donuts with reset times, token mix and compaction alerts."
+    },
+    {
+      "name": "diet",
+      "source": "./diet",
+      "description": "Context Diet: trims huge tool outputs before they reach the context, keeps the full text on disk, and shows tokens saved."
+    },
+    {
+      "name": "anchor",
+      "source": "./anchor",
+      "description": "Anchor: pin facts and rules that are re-sent every turn so /compact can never lose them."
     }
   ],
   "description": "Small mods for Claude Code: changes to its own interface, built with function hooks."
